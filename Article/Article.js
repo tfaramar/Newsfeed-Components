@@ -101,9 +101,60 @@ const data = [
 
   Hint: You will need to use createElement more than once here!
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
+  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.*/
+  const articleContainer = document.querySelector('.articles')
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  data.forEach(piece => {
+    console.log('creating article:', piece.title)
+    articleContainer.appendChild(createArticle(piece.title, piece.date, piece.firstParagraph, piece.secondParagraph, piece.thirdParagraph));
+  })
+
+  articleContainer.appendChild(createArticle('Closest Exoplanet Found: Populated by Baobabs', 'Jun 18th, 2019', 'Lucas ipsum dolor sit amet ben twi\'lek padmé darth darth darth moff hutt organa twi\'lek. Ben amidala secura skywalker lando moff wicket tatooine luke. Solo wampa wampa calrissian yoda moff. Darth grievous darth gonk darth hutt. Darth baba skywalker watto fett jango maul han. Mon ewok sidious sidious lando kenobi grievous gamorrean solo. Yoda wedge utapau darth calamari. Hutt calamari darth jabba. Darth dooku amidala organa moff. Boba darth binks solo hutt skywalker dantooine skywalker. Qui-gonn jar twi\'lek jinn leia jango skywalker mon.', 'Grievous fett calamari anakin skywalker hutt. Alderaan darth kenobi darth r2-d2 windu mothma. Sidious darth calamari moff. Wampa mothma sith wedge solo mara. Darth gonk maul sith moff chewbacca palpatine mace amidala. C-3po solo skywalker anakin yoda leia. Maul wampa bespin watto jade ewok darth jabba. Lando dantooine moff k-3po dantooine luke. Fisto mandalore darth wedge c-3p0 ahsoka. Secura moff palpatine fett. Anakin sith darth darth. Moff solo leia ben ponda jade. Binks jango aayla skywalker skywalker cade. Mustafar darth ventress anakin watto. Yavin jawa sebulba owen jinn tatooine sith organa.', 'Dagobah hutt jawa leia calamari ventress skywalker yoda. Binks wicket hutt coruscant sidious naboo ackbar tatooine. Hutt lars padmé darth. Maul solo darth darth jabba qui-gon chewbacca darth maul. Moff baba wicket han. C-3po antilles moff qui-gon ahsoka aayla dooku amidala. Palpatine droid amidala droid k-3po twi\'lek padmé wookiee. Leia moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.'))
+
+  function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+    //define new elements
+    const article = document.createElement('div');
+    const articleTitle = document.createElement('h2');
+    const articleDate = document.createElement('p');
+    const articleP1 = document.createElement('p');
+    const articleP2 = document.createElement('p');
+    const articleP3 = document.createElement('p');
+    const expandButton = document.createElement('span');
+
+    //set up structure of elements
+    article.appendChild(articleTitle);
+    article.appendChild(articleDate);
+    article.appendChild(articleP1);
+    article.appendChild(articleP2);
+    article.appendChild(articleP3);
+    article.appendChild(expandButton);
+
+    //set class names
+    article.classList.add('article');
+    articleTitle.classList.add('h2');
+    articleDate.classList.add('date');
+    expandButton.classList.add('expandButton')
+
+
+    //set content
+    expandButton.textContent = 'expand'
+    articleTitle.textContent = title
+    articleDate.textContent = date
+    articleP1.textContent = firstParagraph
+    articleP2.textContent = secondParagraph
+    articleP3.textContent = thirdParagraph
+
+    //add event listener to the expand button
+    expandButton.addEventListener('click', event => {
+      article.classList.toggle('article-open')
+    })
+
+    return article;
+  }
+
+
+
+ /*Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
   Step 3: return the entire component.
 
